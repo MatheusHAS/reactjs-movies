@@ -1,0 +1,28 @@
+{
+  "extends": ["standard-with-typescript", "plugin:prettier/recommended", "plugin:react/recommended"],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
+  "parserOptions": {
+    "project": "./tsconfig.json"
+  },
+  "parser": "@typescript-eslint/parser",
+  "rules": {
+    "@typescript-eslint/strict-boolean-expressions": "off",
+    "@typescript-eslint/consistent-type-definitions": "off",
+    "@typescript-eslint/comma-spacing": "off",
+    "@typescript-eslint/return-await": "off",
+    "@typescript-eslint/no-redeclare": "off",
+    "@typescript-eslint/no-misused-promises": "off",
+    "@typescript-eslint/space-before-function-paren": "off",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/default-param-last": "off",
+    "@typescript-eslint/no-invalid-void-type": "off",
+    "react/jsx-uses-react": "error",
+    "react/jsx-uses-vars": "error",
+    "prettier/prettier": "error"
+  },
+  "plugins": ["react", "prettier"]
+}
