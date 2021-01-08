@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/naming-convention */
 import { HttpRequest } from '@/data/protocols/http/HttpClient'
 import { call, put } from 'redux-saga/effects'
 import { makeAxiosHttpClient } from '@/main/factories/http/AxiosHttpFactory'
@@ -20,7 +21,8 @@ export function* load() {
       headers: headerParams,
     }
     const response = yield call(makeAxiosHttpClient().request, httpRequest)
-    yield put(loadSuccess(response.data))
+    const { results, total_pages, total_results, page } = response.body
+    yield put(loadSuccess(results, total_pages, total_results, page))
   } catch (err) {
     yield put(loadFailure())
   }

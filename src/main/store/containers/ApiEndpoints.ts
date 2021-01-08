@@ -1,8 +1,10 @@
 import env from '@/main/config/environment'
 
+const getUrlWithToken = (path: string) => `${env.API_ENDPOINT}${path}?api_key=${env.API_TOKEN}&language=pt-BR`
+
 export const ApiEndpoints = {
-  getPopularMovies: () => `${env.API_ENDPOINT}/movie/popular`,
-  getMovieById: (MovieId: number) => `${env.API_ENDPOINT}/movie/${MovieId}`,
-  getSimilarMoviesById: (MovieId: number) => `${env.API_ENDPOINT}/movie/${MovieId}/similar`,
-  getTopRatedMovies: () => `${env.API_ENDPOINT}/movie/top_rated`,
+  getPopularMovies: () => getUrlWithToken('/movie/popular'),
+  getMovieById: (MovieId: number) => getUrlWithToken(`/movie/${MovieId}`),
+  getSimilarMoviesById: (MovieId: number) => getUrlWithToken(`/movie/${MovieId}/similar`),
+  getTopRatedMovies: () => getUrlWithToken('/movie/top_rated'),
 }
