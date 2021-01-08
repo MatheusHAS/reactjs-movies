@@ -1,0 +1,9 @@
+node_modules
+package-lock.json
+yarn.lock
+dist
+coverage
+globalConfig.json
+.env
+.vscode
+public/js
