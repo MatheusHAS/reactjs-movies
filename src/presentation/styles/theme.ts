@@ -1,6 +1,7 @@
 import { DefaultTheme } from 'styled-components'
 
 const theme: DefaultTheme = {
+  borderRadius: '8px',
   colors: {
     main: '#1b1e44',
     mainRGB: 'rgb(27,30,68)',

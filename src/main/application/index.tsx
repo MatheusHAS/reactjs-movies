@@ -2,7 +2,6 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { ThemeProvider, createGlobalStyle } from 'styled-components'
 import { Reset } from 'styled-reset'
-import { Header } from '@/presentation/components'
 import { theme } from '@/presentation/styles/theme'
 import Router from './router'
 import store from '@/main/store'
@@ -20,7 +19,6 @@ const Application: React.FC = () => {
       <Reset />
       <GlobalStyles />
       <Provider store={store}>
-        <Header />
         <Router />
       </Provider>
     </ThemeProvider>
