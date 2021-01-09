@@ -8,6 +8,7 @@ const theme: DefaultTheme = {
     secondary: '#2d3447',
     secondaryRGB: 'rgb(45,52,71)',
     font: '#ffffff',
+    background: '#171616',
   },
 }
 

@@ -1,20 +1,11 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { IMovie } from '@/domain/models/IMovie'
-
-interface MovieRouteState {
-  state: IMovie
-}
+import { useLocation } from 'react-router-dom'
+import { IMovie, IMovieRouteState } from '@/domain/models'
+import { MovieDetailContent } from '@/presentation/components'
 
 export const MovieDetail: React.FC = () => {
-  const location: MovieRouteState = useLocation()
+  const location: IMovieRouteState = useLocation()
   const movie: IMovie = location.state
 
-  return (
-    <>
-      <Link to="/">Voltar</Link>
-      <h1>{movie.title}</h1>
-      <span>{movie.overview}</span>
-    </>
-  )
+  return <MovieDetailContent movie={movie} />
 }
