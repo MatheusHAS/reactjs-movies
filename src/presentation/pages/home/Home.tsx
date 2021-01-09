@@ -1,18 +1,26 @@
-import { IApplicationState, IMovie } from '@/domain/models'
+import { IApplicationState, IMovie, IMovieListState } from '@/domain/models'
 import React, { useEffect } from 'react'
 import { bindActionCreators, Dispatch } from 'redux'
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom'
 import * as MoviesActions from '@/main/store/containers/movies/actions'
-import { MovieListItem } from '@/presentation/components'
-import { Container, Posters } from './Styles'
+import { MovieListItem, SkeletonList } from '@/presentation/components'
+import { Container, Posters, Title } from './Styles'
 
 interface Props {
   loadRequest: () => void
-  movies: IMovie[]
+  movieListState: IMovieListState
 }
 
-const Home: React.FC<Props> = ({ loadRequest, movies }: Props) => {
+const Home: React.FC<Props> = ({ loadRequest, movieListState }: Props) => {
+  let movies = movieListState.data || []
+
+  useEffect(() => {
+    if (movieListState.data !== movies) {
+      movies = movieListState.data
+    }
+  }, [movieListState])
+
   useEffect(() => {
     if (!movies || movies.length === 0) {
       loadRequest()
@@ -27,14 +35,28 @@ const Home: React.FC<Props> = ({ loadRequest, movies }: Props) => {
 
   return (
     <Container>
-      <h1>Homepage</h1>
-      <Posters>{movies && movies.map((movie) => renderMovieItem(movie))}</Posters>
+      <Title>Filmes populares</Title>
+      {movieListState.loading ? (
+        <SkeletonList
+          count={8}
+          height={300}
+          width={200}
+          bgColor={'#1d1f35'}
+          highlightColor={{
+            red: 40,
+            green: 39,
+            blue: 93,
+          }}
+        />
+      ) : (
+        <Posters>{movies && movies.map((movie) => renderMovieItem(movie))}</Posters>
+      )}
     </Container>
   )
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-  movies: state.movies.list.data,
+  movieListState: state.movies.list,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(MoviesActions, dispatch)

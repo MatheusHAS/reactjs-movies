@@ -1,17 +1,8 @@
-import React from 'react'
-import {
-  MovieHeader,
-  Title,
-  ListDetails,
-  ListItemProgress,
-  Overview,
-  ProductionCompanies,
-  CompaniesList,
-  ContentTitle,
-} from './Styles'
+import React, { useEffect } from 'react'
+import { MovieHeader, Title, ListDetails, Overview, ProductionCompanies, CompaniesList, ContentTitle } from './Styles'
 import { IMovie, IMovieDetail, IMovieProductionCompany } from '@/domain/models/IMovie'
 import { getYearFromDate } from '@/presentation/utils'
-import { ProgressBar } from '@/presentation/components'
+import { Rating } from '@/presentation/components'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 interface Props {
@@ -32,13 +23,22 @@ export const MovieDetailContent: React.FC<Props> = ({ movie, movieDetail }: Prop
           <li>
             Lançamento:<span>{getYearFromDate(movie.release_date)}</span>
           </li>
-          <ListItemProgress>
-            Popularidade: <ProgressBar percent={movie.popularity > 100 ? 100 : movie.popularity} />
-          </ListItemProgress>
           <li>
-            Código no IMDB:
-            <span>{movieDetail ? movieDetail.imdb_id?.toUpperCase() : null}</span>
+            Popularidade:
+            <span>
+              {movieDetail && movieDetail.vote_average ? (
+                <Rating value={movieDetail.vote_average} />
+              ) : (
+                <Rating value={0} />
+              )}
+            </span>
           </li>
+          {movieDetail && movieDetail.imdb_id ? (
+            <li>
+              Código no IMDB:
+              <span>{movieDetail.imdb_id?.toUpperCase()}</span>
+            </li>
+          ) : null}
         </ListDetails>
       </MovieHeader>
       <Overview>{movie.overview}</Overview>

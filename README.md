@@ -1,8 +1,34 @@
 # reactjs-movies
 
->
+> Esse projeto foi feito para fins de estudo.
+
+## Instalando e executando o projeto
+
+```bash
+$ npm i && npm run dev
+```
+
+## Pacotes, tecnologias e conceitos utilizados:
+
+- Clean Architecture
+- SOLID principles
+- Design Patterns (Dependecy Injection, Factory...)
+- Clean Code
+- ReactJS (with Typescript)
+- Redux + Saga
+- Styled Components
+- SASS
+- Jest
+- Husky
+- CommitLint
+- ESLint
+- Prettier
+- Webpack
+- And more...
 
 ### Clean Architecture:
+
+> Notas de estudo sobre clean architecture...
 
 > 4 - **Domain:** Visa prover toda a regra de negócio da aplicação a partir de _interfaces_. Exemplo Sua autenticação precisa de uma entrada (login e senha), e retorna um Access Token.
 

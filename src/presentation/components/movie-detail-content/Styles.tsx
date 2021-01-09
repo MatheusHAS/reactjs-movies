@@ -11,13 +11,12 @@ export const MovieHeader = styled.div<MovieHeaderProps>`
   align-items: center;
   justify-content: center;
   position: relative;
-  padding-top: 40px;
+  padding: 40px ${(props) => props.theme.containerPadding};
   background-image: url(${(props) => props.bgImage});
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  min-height: 300px;
-  width: 100%;
+  min-height: 280px;
 
   &::before {
     content: '';
@@ -56,6 +55,7 @@ export const ListDetails = styled.ul`
   display: flex;
   flex-direction: row;
   justify-content: center;
+  flex-wrap: wrap;
   width: 100%;
   height: 100%;
   z-index: 1;
@@ -63,6 +63,7 @@ export const ListDetails = styled.ul`
   li {
     display: block;
     padding: 0 10px;
+    margin: 6px 0;
     line-height: 1.3em;
     text-align: center;
 
@@ -82,7 +83,7 @@ export const Overview = styled.section`
   line-height: 1.2em;
   font-weight: normal;
   text-align: justify;
-  padding: 32px;
+  padding: ${(props) => props.theme.containerPadding};
   background-color: ${(props) => props.theme.colors.background};
 `
 
@@ -91,12 +92,12 @@ export const ProductionCompanies = styled.section`
   flex-wrap: wrap;
   align-items: center;
   flex-direction: column;
-  padding: 32px;
+  padding: ${(props) => props.theme.containerPadding};
   background-color: white;
 
   h2 {
     color: ${(props) => props.theme.colors.background};
-    margin-bottom: 24px;
+    margin-bottom: ${(props) => props.theme.containerPadding};
   }
 `
 
@@ -109,6 +110,7 @@ export const CompaniesList = styled.section`
     height: auto;
     padding: 12px;
     align-self: center;
+    filter: grayscale(1);
   }
 `
 
