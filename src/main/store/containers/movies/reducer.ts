@@ -60,6 +60,14 @@ const reducer: Reducer<IMovieState> = (state = INITIAL_STATE, action) => {
       return { ...state, detail: { ...detail, loading: true } }
     case MovieTypes.LOAD_DETAIL_SUCCESS:
       const { result } = action.payload
+      if (result.production_companies) {
+        result.production_companies = result.production_companies.map((company: any) => {
+          return {
+            ...company,
+            logo_path: company.logo_path ? `${env.IMAGE_PREFIX_W200}${company.logo_path}` : null,
+          }
+        })
+      }
       return {
         ...state,
         detail: {

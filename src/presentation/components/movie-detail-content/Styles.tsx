@@ -85,3 +85,34 @@ export const Overview = styled.section`
   padding: 32px;
   background-color: ${(props) => props.theme.colors.background};
 `
+
+export const ProductionCompanies = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  flex-direction: column;
+  padding: 32px;
+  background-color: white;
+
+  h2 {
+    color: ${(props) => props.theme.colors.background};
+    margin-bottom: 24px;
+  }
+`
+
+export const CompaniesList = styled.section`
+  display: flex;
+  flex-wrap: wrap;
+
+  img {
+    max-width: 100%;
+    height: auto;
+    padding: 12px;
+    align-self: center;
+  }
+`
+
+export const ContentTitle = styled.h2`
+  font-size: 1.5em;
+  font-weight: bold;
+`

@@ -21,6 +21,10 @@ const MovieDetail: React.FC<Props> = ({ loadDetailRequest, movieDetail }: Props)
     }
   }, [])
 
+  useEffect(() => {
+    console.log(movieDetail)
+  }, [movieDetail])
+
   return <MovieDetailContent movie={movie} movieDetail={movieDetail} />
 }
 
