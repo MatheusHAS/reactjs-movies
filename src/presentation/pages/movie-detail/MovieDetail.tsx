@@ -1,20 +1,39 @@
-import React from 'react'
-import { Link, useLocation } from 'react-router-dom'
-import { IMovie } from '@/domain/models/IMovie'
+import React, { useEffect } from 'react'
+import { useLocation } from 'react-router-dom'
+import { IApplicationState, IMovie, IMovieDetail, IMovieRouteState } from '@/domain/models'
+import { MovieDetailContent } from '@/presentation/components'
+import * as MoviesActions from '@/main/store/containers/movies/actions'
+import { bindActionCreators, Dispatch } from 'redux'
+import { connect } from 'react-redux'
 
-interface MovieRouteState {
-  state: IMovie
+interface Props {
+  loadDetailRequest: (id: number) => void
+  movieDetail: IMovieDetail
 }
 
-export const MovieDetail: React.FC = () => {
-  const location: MovieRouteState = useLocation()
+const MovieDetail: React.FC<Props> = ({ loadDetailRequest, movieDetail }: Props) => {
+  const location: IMovieRouteState = useLocation()
   const movie: IMovie = location.state
 
-  return (
-    <>
-      <Link to="/">Voltar</Link>
-      <h1>{movie.title}</h1>
-      <span>{movie.overview}</span>
-    </>
-  )
+  useEffect(() => {
+    if ((movieDetail && movieDetail.id !== movie.id) || !movieDetail) {
+      loadDetailRequest(movie.id)
+    }
+  }, [])
+
+  useEffect(() => {
+    console.log(movieDetail)
+  }, [movieDetail])
+
+  return <MovieDetailContent movie={movie} movieDetail={movieDetail} />
 }
+
+const mapStateToProps = (state: IApplicationState) => ({
+  movieDetail: state.movies.detail.data,
+})
+
+const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(MoviesActions, dispatch)
+
+const connectInstance = connect(mapStateToProps, mapDispatchToProps)
+
+export default connectInstance(MovieDetail)

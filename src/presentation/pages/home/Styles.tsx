@@ -5,6 +5,7 @@ export const Container = styled.div`
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  padding-top: 96px;
 
   a {
     text-decoration: none;
