@@ -14,13 +14,10 @@ interface Props {
 
 const Home: React.FC<Props> = ({ loadRequest, movies }: Props) => {
   useEffect(() => {
-    loadRequest()
+    if (!movies || movies.length === 0) {
+      loadRequest()
+    }
   }, [])
-
-  useEffect(() => {
-    console.log('movies changed')
-    console.log(movies)
-  }, [movies])
 
   const renderMovieItem = (movie: IMovie) => (
     <Link key={movie.id} to={{ pathname: `/movie/${movie.id}`, state: movie }}>
@@ -37,7 +34,7 @@ const Home: React.FC<Props> = ({ loadRequest, movies }: Props) => {
 }
 
 const mapStateToProps = (state: IApplicationState) => ({
-  movies: state.movies.data,
+  movies: state.movies.list.data,
 })
 
 const mapDispatchToProps = (dispatch: Dispatch) => bindActionCreators(MoviesActions, dispatch)
