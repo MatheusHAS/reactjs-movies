@@ -2,8 +2,8 @@ import styled, { keyframes } from 'styled-components'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
 
 const BeforeImageHoverAnimation = keyframes`
-    0%   { top: 300px; }
-    100%   { top: 0px; }
+  0%   { top: 300px; }
+  100%   { top: 0px; }
 `
 
 export const Container = styled.div`
@@ -46,6 +46,7 @@ export const Title = styled.h2`
   margin: 12px 0;
   padding: 0 12px;
 `
+
 export const Image = styled(LazyLoadImage)`
   border-radius: ${(props) => props.theme.borderRadius};
   position: absolute;
