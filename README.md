@@ -2,6 +2,8 @@
 
 > Esse projeto foi feito para fins de estudo.
 
+[Ver demonstração do projeto](https://reactjs-movies.vercel.app)
+
 ## Instalando e executando o projeto
 
 ```bash
