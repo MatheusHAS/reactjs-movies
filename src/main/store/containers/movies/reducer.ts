@@ -31,15 +31,18 @@ const reducer: Reducer<IMovieState> = (state = INITIAL_STATE, action) => {
           ...list,
           loading: false,
           error: false,
-          data: results.map((result: IMovie) => {
-            if (result.backdrop_path) {
-              result.backdrop_path = `${env.IMAGE_PREFIX_BG}${result.backdrop_path}`
-            }
-            if (result.poster_path) {
-              result.poster_path = `${env.IMAGE_PREFIX_URL}${result.poster_path}`
-            }
-            return result
-          }),
+          data: [
+            ...state.list.data,
+            ...results.map((result: IMovie) => {
+              if (result.backdrop_path) {
+                result.backdrop_path = `${env.IMAGE_PREFIX_BG}${result.backdrop_path}`
+              }
+              if (result.poster_path) {
+                result.poster_path = `${env.IMAGE_PREFIX_URL}${result.poster_path}`
+              }
+              return result
+            }),
+          ],
           totalPages,
           totalResults,
           page,

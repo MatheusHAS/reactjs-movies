@@ -4,7 +4,7 @@ import { makeAxiosHttpClient } from '@/main/factories/http/AxiosHttpFactory'
 import { loadSuccess, loadFailure, loadDetailSuccess, loadDetailFailure } from './actions'
 import { ApiEndpoints } from '@/main/store/containers/ApiEndpoints'
 
-export function* load() {
+export function* load(props: any) {
   let token = localStorage.token
   if (!token) token = localStorage.token = Math.random().toString(36).substr(-8)
 
@@ -15,7 +15,7 @@ export function* load() {
 
   try {
     const httpRequest: HttpRequest = {
-      url: `${ApiEndpoints.getTopRatedMovies()}`,
+      url: `${ApiEndpoints.getTopRatedMovies(props.payload.page)}`,
       method: 'get',
       headers: headerParams,
     }
