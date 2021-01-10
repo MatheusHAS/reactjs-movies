@@ -2,7 +2,7 @@
   "name": "reactjs-movies",
   "version": "0.0.1",
   "scripts": {
-    "build": "webpack serve --config webpack.prod.js",
+    "build": "webpack --config webpack.prod.js",
     "dev:base": "webpack serve --config webpack.dev.js",
     "dev": "npm run dev:base -- --open",
     "eslint": "eslint . --fix",
