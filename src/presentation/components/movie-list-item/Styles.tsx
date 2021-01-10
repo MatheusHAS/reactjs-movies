@@ -18,7 +18,6 @@ export const Container = styled.div`
   width: 200px;
   border-radius: ${(props) => props.theme.borderRadius};
   &:hover {
-    // border: 1px solid ${(props) => props.theme.colors.main};
     &:before {
       animation-name: ${BeforeImageHoverAnimation};
       animation-duration: 0.5s;
